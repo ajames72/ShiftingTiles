@@ -1,0 +1,1 @@
+var helperVar = 'Set up global helper values here';
