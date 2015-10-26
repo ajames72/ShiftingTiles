@@ -248,6 +248,17 @@ define(function (require) {
 				spyCallback.reset();
 			});
 
+			it("should get random image index", function(){
+				pictureTileCollection.fetch();
+				fakeServer.respond();
+
+				var check_no_of_times = 15;
+				for(var i = 0; i < check_no_of_times; i++){
+					var rand = pictureTileCollection.getRandomIndex();
+					expect(rand < pictureTileCollection.length).toBe(true);
+				}
+			});
+
 			it("should initialize the image slots", function(){
 				pictureTileCollection.fetch();
 				fakeServer.respond();
@@ -256,7 +267,7 @@ define(function (require) {
 
 				expect(pictureTileCollection.slots.length).toBe(pictureTileCollection.viewSize);
 
-				var check_no_of_times = 5;
+				var check_no_of_times = 15;
 				var count  = 0;
 
 				do{
