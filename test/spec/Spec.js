@@ -254,8 +254,9 @@ define(function (require) {
 
 				var check_no_of_times = 15;
 				for(var i = 0; i < check_no_of_times; i++){
+					//Testing that it does not exceed the size of the collection
 					var rand = pictureTileCollection.getRandomIndex();
-					expect(rand < pictureTileCollection.length).toBe(true);
+					expect(rand < pictureTileCollection.size()).toBe(true);
 				}
 			});
 
