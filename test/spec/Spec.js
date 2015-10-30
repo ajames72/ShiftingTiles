@@ -244,6 +244,7 @@ define(function (require) {
 			});
 
 			afterEach(function(){
+				pictureTileCollection.slots.length = 0;
 				fakeServer.restore();
 				spyCallback.reset();
 			});
@@ -268,20 +269,39 @@ define(function (require) {
 
 				expect(pictureTileCollection.slots.length).toBe(pictureTileCollection.viewSize);
 
+				// Checking all the slots are unique
+				for(var i  = 1; i < pictureTileCollection.slots.length; i++){
+					for(var x = 0; x < i; x++){
+						expect(pictureTileCollection.slots[x] === pictureTileCollection.slots[i]).toBe(false);
+					}
+				}
+			});
+
+			it("should insert a new image into the slots", function(){
+
+				pictureTileCollection.fetch();
+				fakeServer.respond();
+
+				pictureTileCollection.initializeSlots();
+
 				var check_no_of_times = 15;
 				var count  = 0;
 
 				do{
-					for(var i  = 1; i < pictureTileCollection.slots.length; i++){
+					for(var i  = 0; i < pictureTileCollection.slots.length; i++){
 						for(var x = 0; x < i; x++){
-							expect(pictureTileCollection.slots[x] === pictureTileCollection.slots[i]).toBe(false);
+							expect(pictureTileCollection.slots[x]).not.toBe(pictureTileCollection.slots[i]);
 						}
 					}
+
+					//Generates a new image reference
+					pictureTileCollection.getNewIndex();
 
 					count++;
 				} while (count < check_no_of_times);
 
 			});
+
 
 			it("should display only 6 items", function(){
 				pictureTileCollection.fetch();
