@@ -302,14 +302,34 @@ define(function (require) {
 
 			});
 
+			it("should not load any images that do not exist", function(){
 
-			it("should display only 6 items", function(){
-				pictureTileCollection.fetch();
-				fakeServer.respond();
-				//pictureTileCollection.render();
-				var model0 = pictureTileCollection.at(0);
-				expect(model0.get('src')).toBe("/content/imgs/image_1.png");
+				var getImageFakeServer = sinon.fakeServer.create();
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_1.png",
+					[
+						404,
+						{ "Content-Type": "application/json" },
+						'[{"test":"error"}]'
+					]
+				);
+
+				var testModel = new PictureTileModel();
+				testModel.set('src', "/content/imgs/image_1.png");
+				pictureTileCollection.add(testModel);
+
+				var p = pictureTileCollection.load();
+				getImageFakeServer.respond();
+
+				p.done(function(){
+					expect(pictureTileCollection.size()).toBe(0);
+
+					getImageFakeServer.restore();
+				});
+
 			});
+
 		});
 
 	});

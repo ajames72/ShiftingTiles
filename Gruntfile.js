@@ -87,7 +87,6 @@ module.exports = function(grunt) {
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -95,6 +94,6 @@ module.exports = function(grunt) {
 	// Default task.
 	grunt.registerTask('test', ['jshint', 'jasmine']);
 	grunt.registerTask('mywatch', ['watch']);
-	grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
 };
