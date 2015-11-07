@@ -46,9 +46,11 @@
     "grunt-contrib-uglify": "~0.6.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-template-jasmine-requirejs": "^0.2.2",
-    "jquery": "~2.1.1",
+    "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5",
     "knockout": "^3.3.0",
-    "requirejs": "~2.1.15"
+    "requirejs": "~2.1.15",
+    "spinkit": "^1.2.2"
   },
   "keywords": []
 }
