@@ -22,15 +22,6 @@ module.exports = function(grunt) {
 				dest: 'dist/<%= pkg.name %>.js'
 			},
 		},
-		uglify: {
-			options: {
-				banner: '<%= banner %>'
-			},
-			dist: {
-				src: '<%= concat.dist.dest %>',
-				dest: 'dist/<%= pkg.name %>.min.js'
-			},
-		},
 		jasmine : {
 			src : 'lib/**/*.js',
 			options : {
@@ -68,6 +59,16 @@ module.exports = function(grunt) {
 			// 	src: ['test/**/*.js']
 			// },
 		},
+		requirejs: {
+			compile: {
+				options: {
+					baseUrl: "./lib/js/",
+					mainConfigFile: "lib/js/main.js",
+					include: ['main'],
+					out: "dist/js/ShiftingTiles.min.js"
+				}
+			}
+		},
 		watch: {
 			gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
@@ -86,14 +87,14 @@ module.exports = function(grunt) {
 
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Default task.
 	grunt.registerTask('test', ['jshint', 'jasmine']);
 	grunt.registerTask('mywatch', ['watch']);
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'concat', 'requirejs']);
 
 };
