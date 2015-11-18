@@ -69,6 +69,18 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		sass: {
+			dev: {
+				files: {
+					'lib/css/spinners/8-circle.css': 'lib/scss/spinners/8-circle.scss'
+				}
+			},
+			dist: {
+				files: {
+					'lib/css/spinners/8-circle.css': 'lib/scss/spinners/8-circle.scss'
+				}
+			}
+		},
 		watch: {
 			gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
@@ -91,10 +103,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-sass');
 
 	// Default task.
-	grunt.registerTask('test', ['jshint', 'jasmine']);
+	grunt.registerTask('devsass', ['sass:dev']);
+	grunt.registerTask('distsass', ['sass:dist'])
+	grunt.registerTask('test', ['jshint', 'jasmine', 'devsass']);
 	grunt.registerTask('mywatch', ['watch']);
-	grunt.registerTask('default', ['jshint', 'concat', 'requirejs']);
+	grunt.registerTask('default', ['jshint', 'concat', 'requirejs', 'distsass']);
 
 };
