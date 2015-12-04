@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 			'* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
 			' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
 		// Task configuration.
-		concat: {
+		/*concat: {
 			options: {
 				banner: '<%= banner %>',
 				stripBanners: true
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				src: ['lib/<%= pkg.name %>.js'],
 				dest: 'dist/<%= pkg.name %>.js'
 			},
-		},
+		},*/
 		jasmine : {
 			src : 'lib/**/*.js',
 			options : {
@@ -54,10 +54,7 @@ module.exports = function(grunt) {
 					jshintrc: 'lib/.jshintrc'
 				},
 				src: ['lib/**/*.js']
-			},
-			// test: {
-			// 	src: ['test/**/*.js']
-			// },
+			}
 		},
 		requirejs: {
 			compile: {
@@ -65,19 +62,26 @@ module.exports = function(grunt) {
 					baseUrl: "./lib/js/",
 					mainConfigFile: "lib/js/main.js",
 					include: ['main'],
-					out: "dist/js/ShiftingTiles.min.js"
+					out: "dist/js/<%= pkg.name %>.min.js"
 				}
 			}
 		},
 		sass: {
 			dev: {
+				options: {
+					sourceMap: false
+				},
 				files: {
-					'lib/css/spinners/8-circle.css': 'lib/scss/spinners/8-circle.scss'
+					'lib/css/style/<%= pkg.name %>-style.css': 'lib/scss/main.scss'
 				}
 			},
 			dist: {
+				options: {
+					outputStyle: 'compressed',
+					sourceMap: true
+				},
 				files: {
-					'lib/css/spinners/8-circle.css': 'lib/scss/spinners/8-circle.scss'
+					'dist/css/style/<%= pkg.name %>-style.min.css': 'lib/scss/main.scss'
 				}
 			}
 		},
@@ -107,9 +111,9 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('devsass', ['sass:dev']);
-	grunt.registerTask('distsass', ['sass:dist'])
+	grunt.registerTask('distsass', ['sass:dist']);
 	grunt.registerTask('test', ['jshint', 'jasmine', 'devsass']);
 	grunt.registerTask('mywatch', ['watch']);
-	grunt.registerTask('default', ['jshint', 'concat', 'requirejs', 'distsass']);
+	grunt.registerTask('default', ['jshint', 'requirejs', 'distsass']);
 
 };

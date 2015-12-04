@@ -329,7 +329,6 @@ define(function (require) {
 				});
 
 			});
-
 		});
 
 	});

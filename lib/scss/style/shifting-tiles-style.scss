@@ -1,0 +1,51 @@
+/**
+ *
+ *
+ *
+ *
+ **/
+
+@import "../variables";
+
+div.ajmebc-shifting-tile,
+img.ajmebc-shifting-tile {
+  margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#PictureTileContainer.ajmebc-shifting-tile {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+#loading.ajmebc-shifting-tile {
+  display: block;
+  background-color: $picture-tile-loading-background-color;
+  height: $picture-tile-loading-height;
+  width: $picture-tile-loading-width;
+}
+
+div.ajmebc-shifting-tile.ajmebc-shifting-tile-row,
+div.ajmebc-shifting-tile.ajmebc-shifting-tile-col {
+  display: inline-block;
+}
+
+div.ajmebc-shifting-tile.ajmebc-shifting-tile-row {
+  height: 50%;
+  margin-left: $picture-tile-row-horizontal-margin;
+  margin-right: $picture-tile-row-horizontal-margin;
+  margin-top: $picture-tile-row-vertical-margin;
+  margin-bottom: $picture-tile-row-vertical-margin;
+}
+
+div.ajmebc-shifting-tile.ajmebc-shifting-tile-col {
+  width: $picture-tile-column-width;
+  height: $picture-tile-height;
+  
+  .ajmebc-shifting-tile-img {
+    width: $picture-tile-img-width;
+    height: $picture-tile-img-height;
+  }
+}

@@ -4,10 +4,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>bTask</title>
+    <!--
     <link href="css/spinners/8-circle.css" rel="stylesheet">
+  -->
+  <link href="../dist/css/style/ShiftingTiles-style.min.css" rel="stylesheet">
+  <!--<link href="css/style/ShiftingTiles-style.css" rel="stylesheet">-->
      <!-- Bootstrap -->
+     <!--
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,15 +22,17 @@
   <script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
 </head>
 <style media="screen">
-  .row{
-     margin-left: 0px !important;
-     margin-right: 0px !important;
-     margin-top: 15px !important;
-     margin-bottom: 15px !important;
-    }
+
 </style>
 <body>
 	<div id="app" class="app" style="height: 600px; width: 100%; display: block;"></div>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="../dist/js/ShiftingTiles.min.js"></script>
+  <!--<script type="text/javascript" src="js/main.js"></script>-->
+  <script type="text/javascript">
+  var ajmebc = ajmebc || {};
+    ajmebc.ShiftingTiles = {
+      url: './content/json/pictures.json',
+    };
+  </script>
 </body>
 </html>
