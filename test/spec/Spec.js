@@ -157,6 +157,7 @@ define(function (require) {
 				spyCallback = sinon.spy();
 				PictureTileCollection = require('collections/PictureTileCollection');
 				pictureTileCollection = new PictureTileCollection();
+				pictureTileCollection.url = ajmebc.ShiftingTiles.url;
 				PictureTileModel = require('models/PictureTileModel');
 				pictureTileModel = new PictureTileModel();
 
@@ -345,6 +346,7 @@ define(function (require) {
 				spyCallback = sinon.spy();
 				PictureTileCollection = require('collections/PictureTileCollection');
 				pictureTileCollection = new PictureTileCollection();
+				pictureTileCollection.url = ajmebc.ShiftingTiles.url;
 				PictureTileModel = require('models/PictureTileModel');
 				pictureTileModel = new PictureTileModel();
 
