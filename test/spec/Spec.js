@@ -1,3 +1,8 @@
+var ajmebc = ajmebc || {};
+ajmebc.ShiftingTiles = {
+	url: './content/json/pictures.json',
+};
+
 define(function (require) {
 
 	describe("The Application", function(){
@@ -199,6 +204,118 @@ define(function (require) {
 
 		});
 
+
+		describe("Data fetch", function(){
+			var PictureTileCollection;
+			var pictureTileCollection;
+			var PictureTileModel;
+			var pictureTileModel;
+			var responseData = {"pictures":
+														[
+															{ "src": "/content/imgs/image_1.png" },
+															{ "src": "/content/imgs/image_2.png" },
+															{ "src": "/content/imgs/image_3.png" },
+															{ "src": "/content/imgs/image_4.png" },
+															{ "src": "/content/imgs/image_5.png" }
+														]
+													};
+
+
+			beforeEach(function(){
+				PictureTileCollection = require('collections/PictureTileCollection');
+				pictureTileCollection = new PictureTileCollection();
+				PictureTileModel = require('models/PictureTileModel');
+				pictureTileModel = new PictureTileModel();
+				pictureTileCollection.add(responseData.pictures);
+			});
+
+			afterEach(function(){
+				pictureTileCollection.length = 0;
+				pictureTileCollection.slots.length = 0;
+			});
+
+			it("should add items to the collection", function(){
+				expect(pictureTileCollection.length).toEqual(5);
+			});
+
+			it("should set the src property in the model", function(){
+
+				var counter = 0;
+				// check the src property in the models
+				pictureTileCollection.each(function(model){
+					counter++;
+					expect(model.get('src')).toBe('/content/imgs/image_'+counter+'.png');
+				});
+				expect(counter).toBe(5);
+			});
+
+			it("should not load any images that do not exist", function(){
+
+				var getImageFakeServer = sinon.fakeServer.create();
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_1.png",
+					[
+						200,
+						{ "Content-Type": "application/json" },
+						'[{"test":"success"}]'
+					]
+				);
+
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_2.png",
+					[
+						200,
+						{ "Content-Type": "application/json" },
+						'[{"test":"success"}]'
+					]
+				);
+
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_3.png",
+					[
+						200,
+						{ "Content-Type": "application/json" },
+						'[{"test":"success"}]'
+					]
+				);
+
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_4.png",
+					[
+						200,
+						{ "Content-Type": "application/json" },
+						'[{"test":"success"}]'
+					]
+				);
+
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_5.png",
+					[
+						404,
+						{ "Content-Type": "application/json" },
+						'[{"test":"error"}]'
+					]
+				);
+
+				var p = pictureTileCollection.load();
+				getImageFakeServer.respond();
+
+				p.done(function(){
+					expect(pictureTileCollection.size()).toBe(4);
+
+					getImageFakeServer.restore();
+				});
+
+			});
+
+		});
+
+
 		describe("Rendering", function(){
 
 			var PictureTileCollection;
@@ -302,6 +419,35 @@ define(function (require) {
 
 			});
 
+			it("should load any images that exist", function(){
+
+				var getImageFakeServer = sinon.fakeServer.create();
+				getImageFakeServer.respondWith(
+					"GET",
+					"/content/imgs/image_1.png",
+					[
+						200,
+						{ "Content-Type": "application/json" },
+						'[{"test":"success"}]'
+					]
+				);
+
+				var testModel = new PictureTileModel();
+				testModel.set('src', "/content/imgs/image_1.png");
+				pictureTileCollection.add(testModel);
+
+				var p = pictureTileCollection.load();
+				getImageFakeServer.respond();
+
+				p.done(function(){
+					expect(pictureTileCollection.size()).toBe(1);
+
+					getImageFakeServer.restore();
+				});
+
+			});
+
+
 			it("should not load any images that do not exist", function(){
 
 				var getImageFakeServer = sinon.fakeServer.create();
@@ -330,7 +476,6 @@ define(function (require) {
 
 			});
 		});
-
 	});
 
 	describe("The Application Route", function(){
