@@ -1,6 +1,26 @@
+/**
+ * Global configuration object
+ **/
 var ajmebc = ajmebc || {};
 ajmebc.ShiftingTiles = {
 	url: './content/json/pictures.json',
+	data: {"pictures": [
+        { "src": "content/images/20140528_182558.jpg"},
+        { "src": "content/images/8311987635_6f157d5ea1_o.jpg" },
+        { "src": "content/images/8311987635_6f157d5ea1_oxxx.jpg" },
+        { "src": "content/images/8590992191_2e96b12bbc_o.jpg" },
+        { "src": "content/images/8591017723_6f72083658_o.jpg" },
+        { "src": "content/images/8591031889_e72b08afa5_o.jpg" },
+        { "src": "content/images/8876100671_442ac3b93e_o.jpg" },
+        { "src": "content/images/8591017723_6f72083658_oxxx.jpg" },
+        { "src": "content/images/8591031889_e72b08afa5_oxxx.jpg" },
+        { "src": "content/images/8876100671_442ac3b93e_oxxx.jpg" },
+        { "src": "content/images/IMG_1323_edited-2.jpg" },
+        { "src": "content/images/IMG_1325_edited-2.jpg" },
+        { "src": "content/images/IMG_3464_edited-1.jpg" },
+        { "src": "content/images/IMG_3512_edited-1.jpg" },
+        { "src": "content/images/IMG_3543.jpg" }
+      ]}
 };
 
 define(function (require) {
@@ -116,11 +136,13 @@ define(function (require) {
 			var PictureTileCollection;
 			var PictureTileModel;
 			var pictureTileCollection;
+			var pictureTileCollectionUrl = "./content/json/pictures.json";
 
 			beforeEach(function(){
 				PictureTileModel = require('models/PictureTileModel');
 				PictureTileCollection = require('collections/PictureTileCollection');
 				pictureTileCollection = new PictureTileCollection();
+				pictureTileCollection.url = "./content/json/pictures.json";
 			});
 
 			it("should exist", function(){
@@ -131,6 +153,9 @@ define(function (require) {
 			});
 			it("should contain a viewSize setting set to 6", function(){
 				expect(pictureTileCollection.viewSize).toBe(6);
+			});
+			it("should set the url property", function(){
+				expect(pictureTileCollection.url).toBe(pictureTileCollectionUrl);
 			});
 		});
 
@@ -350,7 +375,6 @@ define(function (require) {
 				PictureTileModel = require('models/PictureTileModel');
 				pictureTileModel = new PictureTileModel();
 
-
 				fakeServer.respondWith(
 					"GET",
 					"./content/json/pictures.json",
@@ -360,6 +384,9 @@ define(function (require) {
 						JSON.stringify(responseData)
 					]
 				);
+
+				pictureTileCollection.fetch();
+				fakeServer.respond();
 			});
 
 			afterEach(function(){
@@ -369,9 +396,6 @@ define(function (require) {
 			});
 
 			it("should get random image index", function(){
-				pictureTileCollection.fetch();
-				fakeServer.respond();
-
 				var check_no_of_times = 15;
 				for(var i = 0; i < check_no_of_times; i++){
 					//Testing that it does not exceed the size of the collection
@@ -381,8 +405,6 @@ define(function (require) {
 			});
 
 			it("should initialize the image slots", function(){
-				pictureTileCollection.fetch();
-				fakeServer.respond();
 
 				pictureTileCollection.initializeSlots();
 
@@ -396,10 +418,7 @@ define(function (require) {
 				}
 			});
 
-			it("should insert a new image into the slots", function(){
-
-				pictureTileCollection.fetch();
-				fakeServer.respond();
+			it("should insert a new random image into a random slots", function(){
 
 				pictureTileCollection.initializeSlots();
 
@@ -407,6 +426,7 @@ define(function (require) {
 				var count  = 0;
 
 				do{
+					//test all images in the array are unique
 					for(var i  = 0; i < pictureTileCollection.slots.length; i++){
 						for(var x = 0; x < i; x++){
 							expect(pictureTileCollection.slots[x]).not.toBe(pictureTileCollection.slots[i]);
@@ -433,11 +453,11 @@ define(function (require) {
 						'[{"test":"success"}]'
 					]
 				);
-
+				/*
 				var testModel = new PictureTileModel();
 				testModel.set('src', "/content/imgs/image_1.png");
 				pictureTileCollection.add(testModel);
-
+				*/
 				var p = pictureTileCollection.load();
 				getImageFakeServer.respond();
 
@@ -448,7 +468,6 @@ define(function (require) {
 				});
 
 			});
-
 
 			it("should not load any images that do not exist", function(){
 
@@ -485,6 +504,7 @@ define(function (require) {
 		var ApplicationRouter = require('router');
 		var router;
 		var routeSpy;
+
 		beforeEach(function(){
 			router = new ApplicationRouter();
 			routeSpy = sinon.spy();
@@ -498,7 +518,6 @@ define(function (require) {
 			router.bind("route:index", routeSpy);
 			router.navigate("", true);
 			expect(routeSpy.calledOnce).toBe(true);
-			//expect(routeSpy).toHaveBeenCalledWith();
 		});
 	});
 
@@ -514,9 +533,6 @@ define(function (require) {
 		});
 
 		describe("Instantiation", function() {
-			/*it("should create a list element", function() {
-				expect(pictureContainerView.el.nodeName).toEqual("DIV");
-			});*/
 			it("should create an instance of PictureTileCollection", function(){
 				expect(pictureContainerView.collection instanceof PictureTileCollection).toBe(true);
 			});
