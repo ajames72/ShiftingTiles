@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 					sourceMap: false
 				},
 				files: {
-					'lib/css/style/<%= pkg.name %>-style.css': 'lib/scss/main.scss'
+					'lib/style/css/<%= pkg.name %>-style.css': 'lib/scss/main.scss'
 				}
 			},
 			dist: {
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 					sourceMap: true
 				},
 				files: {
-					'dist/css/style/<%= pkg.name %>-style.min.css': 'lib/scss/main.scss'
+					'dist/style/css/<%= pkg.name %>-style.min.css': 'lib/scss/main.scss'
 				}
 			}
 		},
