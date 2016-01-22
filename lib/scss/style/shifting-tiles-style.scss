@@ -5,47 +5,60 @@
  *
  **/
 
-@import "../variables";
-
-div.ajmebc-shifting-tile,
-img.ajmebc-shifting-tile {
-  margin: 0;
-	padding: 0;
-	border: 0;
-}
-
-#PictureTileContainer.ajmebc-shifting-tile {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
+@import "variables";
+@import "mixins";
 
 #loading.ajmebc-shifting-tile {
   display: block;
   background-color: $picture-tile-loading-background-color;
   height: $picture-tile-loading-height;
   width: $picture-tile-loading-width;
+  font-size: 2em;
 }
 
-div.ajmebc-shifting-tile.ajmebc-shifting-tile-row,
-div.ajmebc-shifting-tile.ajmebc-shifting-tile-col {
-  display: inline-block;
+div.ajmebc-shifting-tile,
+img.ajmebc-shifting-tile {
+  box-sizing: border-box;
+  margin: 0;
+	padding: 0;
+	border: 0;
 }
 
-div.ajmebc-shifting-tile.ajmebc-shifting-tile-row {
-  height: 50%;
-  margin-left: $picture-tile-row-horizontal-margin;
-  margin-right: $picture-tile-row-horizontal-margin;
-  margin-top: $picture-tile-row-vertical-margin;
-  margin-bottom: $picture-tile-row-vertical-margin;
-}
+div.ajmebc-shifting-tile {
+  display: block;
+  height: 100%;
+  width: 100%;
 
-div.ajmebc-shifting-tile.ajmebc-shifting-tile-col {
-  width: $picture-tile-column-width;
-  height: $picture-tile-height;
-  
-  .ajmebc-shifting-tile-img {
-    width: $picture-tile-img-width;
-    height: $picture-tile-img-height;
+  .ajmebc-shifting-tile-container{
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    width: 100%;
+    //Remove the spacing between the inline-block
+    //font-size: 0;
+  }
+
+  .ajmebc-shifting-tile-row {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    //Remove the spacing between the inline-block
+    //font-size: 0;
+  }
+  .ajmebc-shifting-tile-col {
+    box-sizing: border-box;
+    display: inline-block;
+    /*
+     * Width is taken from config
+     */
+    height: 100%;
+    float: left;
+    .ajmebc-shifting-tile-img {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

@@ -7,8 +7,8 @@
     <!--
     <link href="css/spinners/8-circle.css" rel="stylesheet">
   -->
-  <link href="../dist/style/css/ShiftingTiles-style.min.css" rel="stylesheet">
-  <!--<link href="css/style/ShiftingTiles-style.css" rel="stylesheet">-->
+  <!--<link href="../dist/style/css/ShiftingTiles-style.min.css" rel="stylesheet">-->
+  <link href="style/css/ShiftingTiles-style.css" rel="stylesheet">
      <!-- Bootstrap -->
      <!--
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,15 +19,13 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
+  <!--<script type="text/javascript" src="../node_modules/requirejs/require.js"></script>-->
 </head>
 <style media="screen">
 
 </style>
 <body>
-	<div id="app" class="app" style="height: 600px; width: 100%; display: block;"></div>
-	<!--<script type="text/javascript" src="../dist/js/ShiftingTiles.min.js"></script>-->
-  <script type="text/javascript" src="js/main.js"></script>
+	<div id="app" class="app" style="height: 150px; width: 600px; display: block;"></div>
   <script type="text/javascript">
   var ajmebc = ajmebc || {};
     ajmebc.ShiftingTiles = {
@@ -48,8 +46,14 @@
         { "src": "content/images/IMG_3464_edited-1.jpg" },
         { "src": "content/images/IMG_3512_edited-1.jpg" },
         { "src": "content/images/IMG_3543.jpg" }
-      ]}
+      ]},
+      rows: 2,
+      columns: 2,
+      loading: 'sequence',
+      //loading: 'random'
     };
   </script>
+  <script type="text/javascript" data-main="js/main.js" src="../node_modules/requirejs/require.js"></script>
+  <!--<script type="text/javascript" src="../dist/js/ShiftingTiles.min.js"></script>-->
 </body>
 </html>

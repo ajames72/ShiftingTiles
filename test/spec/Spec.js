@@ -20,7 +20,9 @@ ajmebc.ShiftingTiles = {
         { "src": "content/images/IMG_3464_edited-1.jpg" },
         { "src": "content/images/IMG_3512_edited-1.jpg" },
         { "src": "content/images/IMG_3543.jpg" }
-      ]}
+      ]},
+	rows: 0,
+	columns: 0
 };
 
 define(function (require) {
@@ -28,7 +30,7 @@ define(function (require) {
 	describe("The Application", function(){
 		it("should exist", function(){
 
-			var App = require('App');
+			var App = require('app');
 
 			var app = new App();
 
@@ -151,11 +153,44 @@ define(function (require) {
 			it("should contain a PictureTileModel", function(){
 				expect(new pictureTileCollection.model() instanceof PictureTileModel).toBe(true);
 			});
+			it("should set the view size", function(){
+				pictureTileCollection.initializeSlots();
+
+				expect(pictureTileCollection.viewSize).toBe(0);
+			});
 			it("should contain a viewSize setting set to 6", function(){
+				pictureTileCollection.setRows(2);
+				pictureTileCollection.setColumns(3);
+
+				pictureTileCollection.initializeSlots();
+
 				expect(pictureTileCollection.viewSize).toBe(6);
 			});
 			it("should set the url property", function(){
 				expect(pictureTileCollection.url).toBe(pictureTileCollectionUrl);
+			});
+
+			//@TODO: Unit tests for setter functions
+			it("should set the loading mode", function(){
+				var test1 = 'sequence';
+				var test2 = 'random';
+
+				pictureTileCollection.setLoading(test1);
+				expect(pictureTileCollection.loading).toBe(test1);
+
+				pictureTileCollection.setLoading(test2);
+				expect(pictureTileCollection.loading).toBe(test2);
+			});
+
+			it("should set the default loading mode", function(){
+				var defaultSetting = 'sequence';
+				var test1 = 'somevalue';
+				var test2 = -100;
+				var test3;
+
+				pictureTileCollection.setLoading(test1);
+				expect(pictureTileCollection.loading).toBe(defaultSetting);
+
 			});
 		});
 
@@ -201,6 +236,8 @@ define(function (require) {
 			afterEach(function(){
 				fakeServer.restore();
 				spyCallback.reset();
+				pictureTileCollection.length = 0;
+				pictureTileCollection.slots.length = 0;
 			});
 
 			it("should make the correct request", function(){
@@ -396,6 +433,9 @@ define(function (require) {
 			});
 
 			it("should get random image index", function(){
+				pictureTileCollection.setLoading('random');
+				pictureTileCollection.setRows(2);
+				pictureTileCollection.setColumns(3);
 				var check_no_of_times = 15;
 				for(var i = 0; i < check_no_of_times; i++){
 					//Testing that it does not exceed the size of the collection
@@ -404,8 +444,55 @@ define(function (require) {
 				}
 			});
 
-			it("should initialize the image slots", function(){
+			it("should get the next image in the sequence", function(){
+				pictureTileCollection.setLoading('sequence');
+				pictureTileCollection.setRows(4);
+				pictureTileCollection.setColumns(1);
+				pictureTileCollection.initializeSlots();
 
+				pictureTileCollection.getNewSequentialIndex();
+
+				expect(pictureTileCollection.slots).toEqual([4,1,2,3]);
+
+			});
+
+			it("should get the next image in the sequence", function(){
+				pictureTileCollection.setLoading('sequence');
+				pictureTileCollection.setRows(4);
+				pictureTileCollection.setColumns(1);
+				pictureTileCollection.initializeSlots();
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([4,1,2,3]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([4,5,2,3]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([4,5,6,3]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([4,5,6,7]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([8,5,6,7]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([8,9,6,7]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([8,9,0,7]);
+
+				pictureTileCollection.getNewSequentialIndex();
+				expect(pictureTileCollection.slots).toEqual([8,9,0,1]);
+			});
+
+
+
+			it("should initialize the image slots", function(){
+				pictureTileCollection.setLoading('random');
+				pictureTileCollection.setRows(2);
+				pictureTileCollection.setColumns(3);
 				pictureTileCollection.initializeSlots();
 
 				expect(pictureTileCollection.slots.length).toBe(pictureTileCollection.viewSize);
@@ -419,7 +506,9 @@ define(function (require) {
 			});
 
 			it("should insert a new random image into a random slots", function(){
-
+				pictureTileCollection.setLoading('random');
+				pictureTileCollection.setRows(2);
+				pictureTileCollection.setColumns(3);
 				pictureTileCollection.initializeSlots();
 
 				var check_no_of_times = 15;
@@ -434,7 +523,7 @@ define(function (require) {
 					}
 
 					//Generates a new image reference
-					pictureTileCollection.getNewIndex();
+					pictureTileCollection.getNewRandomIndex();
 
 					count++;
 				} while (count < check_no_of_times);
