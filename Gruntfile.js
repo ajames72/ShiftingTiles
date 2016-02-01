@@ -85,8 +85,18 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		copy: {
+			main: {
+				files: [
+					{
+						cwd: 'lib/style/fonts/Raleway/', src: ['Raleway-Regular.ttf'], dest: 'dist/style/fonts/Raleway/', expand: true
+					}
+				]
+			}
+		},
+
 		watch: {
-			gruntfile: {
+			/*gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
 				tasks: ['jshint:gruntfile']
 			},
@@ -97,7 +107,14 @@ module.exports = function(grunt) {
 			test: {
 				files: '<%= jshint.test.src %>',
 				tasks: ['jshint:test', 'nodeunit']
-			},
+			},*/
+			styles: {
+				files: ['lib/scss/**/*.scss'], // which files to watch
+				tasks: ['sass:dev'],
+				options: {
+					nospawn: true
+				}
+			}
 		},
 	});
 
@@ -108,12 +125,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	// Default task.
 	grunt.registerTask('devsass', ['sass:dev']);
-	grunt.registerTask('distsass', ['sass:dist']);
 	grunt.registerTask('test', ['jshint', 'jasmine', 'devsass']);
+	grunt.registerTask('distsass', ['sass:dist']);
+	grunt.registerTask('default', ['jshint', 'requirejs', 'distsass', 'copy']);
 	grunt.registerTask('mywatch', ['watch']);
-	grunt.registerTask('default', ['jshint', 'requirejs', 'distsass']);
 
 };

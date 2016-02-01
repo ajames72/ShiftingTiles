@@ -1,7 +1,12 @@
 $spinkit-spinner-margin: 0 auto !default;
-$spinkit-size: 200px !default;
+$spinkit-size: 40px !default;
 $spinkit-spinner-color: #333 !default;
+$spinkit-spinner-container-height: 5em;
+$spinkit-spinner-container-margin: 2em;
 
 $picture-tile-loading-background-color: #fff;
 $picture-tile-loading-height: 100%;
 $picture-tile-loading-width: 100%;
+
+$progress-bar-border-radius: 5px;
+$progress-bar-padding: 2px;

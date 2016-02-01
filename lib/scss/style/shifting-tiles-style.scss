@@ -7,13 +7,47 @@
 
 @import "variables";
 @import "mixins";
+@import "fonts";
+
+.absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
 
 #loading.ajmebc-shifting-tile {
   display: block;
   background-color: $picture-tile-loading-background-color;
   height: $picture-tile-loading-height;
   width: $picture-tile-loading-width;
-  font-size: 2em;
+
+
+  .ajmebc-shifting-tile-loading-text {
+    font-size: 1em;
+    font-family: 'Raleway';
+    display: block;
+    width: 100%;
+  }
+
+  .ajmebc-shifting-tile-loading-spinner {
+    display: block;
+    height: $spinkit-spinner-container-height;
+    margin-top: $spinkit-spinner-container-margin;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .ajmebc-shifting-tile-progress {
+  	height: 1px;
+  	position: relative;
+  	background: $spinkit-spinner-color;
+    @include prefix((
+      border-radius: $progress-bar-border-radius
+    ), webkit moz);
+  	padding: $progress-bar-padding;
+  	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+  }
 }
 
 div.ajmebc-shifting-tile,
@@ -48,7 +82,9 @@ div.ajmebc-shifting-tile {
   }
   .ajmebc-shifting-tile-col {
     box-sizing: border-box;
+    position: relative;;
     display: inline-block;
+    overflow: hidden;
     /*
      * Width is taken from config
      */
@@ -57,8 +93,11 @@ div.ajmebc-shifting-tile {
     .ajmebc-shifting-tile-img {
       box-sizing: border-box;
       display: inline-block;
+      position: absolute;
       width: 100%;
       height: 100%;
+      top: 0px;
+      left: 0px;
     }
   }
 }
