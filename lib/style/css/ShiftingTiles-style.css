@@ -83,6 +83,17 @@ div.ajmebc-shifting-tile {
       top: 0px;
       left: 0px; }
 
+#ajmebc-st-fullscreen .ajmebc-shifting-tile-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); }
+  #ajmebc-st-fullscreen .ajmebc-shifting-tile-fullscreen img {
+    height: 75%; }
+
 /**
  * Animations
  **/

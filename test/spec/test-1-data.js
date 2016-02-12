@@ -245,7 +245,7 @@ define(function (require) {
 				expect(pictureTileCollection.length).toEqual(10);
 			});
 
-			it("should set the src property in the model", function(){
+			it("should get the src property in the model", function(){
 
 				var counter = 0;
 				// check the src property in the models
@@ -256,11 +256,20 @@ define(function (require) {
 				expect(counter).toBe(10);
 			});
 
-			it("should set the index property in the model", function(){
+			it("should get the index property in the model", function(){
 				var counter = 0;
-				// check the src property in the models
+				// check the imgSrcIndex property in the models
 				pictureTileCollection.each(function(model){
 					expect(model.get('imgSrcIndex')).toBe(counter);
+					counter++;
+				});
+			});
+			
+			it("should get the id property in the model", function(){
+				var counter = 1;
+				// check the id property in the models
+				pictureTileCollection.each(function(model){
+					expect(model.get('id')).toBe(counter.toString());
 					counter++;
 				});
 			});
