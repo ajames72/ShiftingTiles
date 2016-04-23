@@ -6,13 +6,14 @@ define(function (require) {
 	var pictureTileCollection = new PictureTileCollection();
 	var PictureTileModel = require('models/PictureTileModel');
 	var pictureTileModel = new PictureTileModel();
+	var state = 2;
 
 	/*
 	 * Collection settings
 	 */
 	pictureTileCollection.setLoading(ajmebc.ShiftingTiles.loading);
-	pictureTileCollection.setRows(ajmebc.ShiftingTiles.rows);
-	pictureTileCollection.setColumns(ajmebc.ShiftingTiles.columns);
+	pictureTileCollection.setRows(ajmebc.ShiftingTiles.style[state].rows);
+	pictureTileCollection.setColumns(ajmebc.ShiftingTiles.style[state].columns);
 	pictureTileCollection.setViewSize();
 	pictureTileCollection.add(ajmebc.ShiftingTiles.data.pictures);
 
@@ -101,13 +102,9 @@ define(function (require) {
 
 	describe("The PictureTileModel", function(){
 		describe("Model Initialization", function(){
-			//var PictureTileModel;
-			//var pictureTileModel;
 
 			beforeEach(function(){
-				//PictureTileModel = require('models/PictureTileModel');
 
-				//pictureTileModel = new PictureTileModel();
 			});
 
 			it("should exist", function(){
@@ -120,32 +117,47 @@ define(function (require) {
 		});
 
 		describe("Model Attributes", function(){
-			//var PictureTileModel;
+
 			var _pictureTileModel = new PictureTileModel();
 			var imgPath = "../content/images/";
+			var id = "1";
+			var description = "Test description";
 
 			beforeEach(function(){
-				//PictureTileModel = require('models/PictureTileModel');
-
-				//pictureTileModel = new PictureTileModel();
 			});
 
-			it("should have the default 'src' attribute set to an empty string", function(){
+			it("should have the default 'src' property set to an empty string", function(){
 				expect(_pictureTileModel.get('src')).toBe('');
 			});
 
-			it("should set/get the src attribute", function(){
+			it("should set/get the 'src' property", function(){
 				_pictureTileModel.set({src: imgPath});
 				expect(_pictureTileModel.get('src')).toBe(imgPath);
+			});
+			it("should have the default 'id' property set to an empty string", function(){
+				expect(_pictureTileModel.get('id')).toBe('');
+			});
+
+			it("should set/get the 'id' property", function(){
+				_pictureTileModel.set({id: id});
+				expect(_pictureTileModel.get('id')).toBe(id);
+			});
+			it("should have the default 'description' property set to an empty string", function(){
+				expect(_pictureTileModel.get('description')).toBe('');
+			});
+
+			it("should set/get the 'description' property", function(){
+				_pictureTileModel.set({description: description});
+				expect(_pictureTileModel.get('description')).toBe(description);
 			});
 		});
 
 		describe("Model Content Fetch", function(){
-			//var PictureTileModel;
+
 			var _pictureTileModel;
 			var _fakeServer;
 			var _spyCallback;
-			//var url = '/testcontenturl/'
+
 			var responseData = {
 									"src": "/testlocation/testimage.png"
 								};
@@ -153,7 +165,6 @@ define(function (require) {
 			beforeEach(function(){
 				_fakeServer = sinon.fakeServer.create();
 				_spyCallback = sinon.spy();
-				//PictureTileModel = require('models/PictureTileModel');
 				_pictureTileModel = new PictureTileModel();
 
 				_fakeServer.respondWith(
@@ -192,90 +203,6 @@ define(function (require) {
 				expect(_pictureTileModel.get('src')).toBe('/testlocation/testimage.png');
 			});
 		});
-	});
-
-	describe("The PictureTileCollection", function(){
-		describe("Collection Initialization", function(){
-
-			beforeEach(function(){
-
-			});
-
-			afterEach(function(){
-				pictureTileCollection.setLoading('random');
-			});
-
-			it("should exist", function(){
-				expect(pictureTileCollection).toBeDefined();
-			});
-			it("should contain a PictureTileModel", function(){
-				expect(new pictureTileCollection.model() instanceof PictureTileModel).toBe(true);
-			});
-			it("should contain a viewSize setting set to 6", function(){
-				expect(pictureTileCollection.viewSize).toBe(6);
-			});
-
-			//@TODO: Unit tests for setter functions
-			it("should set the loading mode", function(){
-				var test1 = 'sequence';
-				var test2 = 'random';
-
-				pictureTileCollection.setLoading(test1);
-				expect(pictureTileCollection.loading).toBe(test1);
-
-				pictureTileCollection.setLoading(test2);
-				expect(pictureTileCollection.loading).toBe(test2);
-			});
-
-			it("should set the default loading mode", function(){
-				var defaultSetting = 'sequence';
-				var test1 = 'somevalue';
-				var test2 = -100;
-				var test3;
-
-				pictureTileCollection.setLoading(test1);
-				expect(pictureTileCollection.loading).toBe(defaultSetting);
-
-			});
-		});
-
-		describe("Data fetch", function(){
-
-			it("should add items to the collection", function(){
-				expect(pictureTileCollection.length).toEqual(10);
-			});
-
-			it("should get the src property in the model", function(){
-
-				var counter = 0;
-				// check the src property in the models
-				pictureTileCollection.each(function(model){
-					counter++;
-					expect(model.get('src')).toBe('/content/imgs/image_'+counter+'.png');
-				});
-				expect(counter).toBe(10);
-			});
-
-			it("should get the index property in the model", function(){
-				var counter = 0;
-				// check the imgSrcIndex property in the models
-				pictureTileCollection.each(function(model){
-					expect(model.get('imgSrcIndex')).toBe(counter);
-					counter++;
-				});
-			});
-			
-			it("should get the id property in the model", function(){
-				var counter = 1;
-				// check the id property in the models
-				pictureTileCollection.each(function(model){
-					expect(model.get('id')).toBe(counter.toString());
-					counter++;
-				});
-			});
-
-		});
-
 	});
 
 	describe("Load images - random", function(){

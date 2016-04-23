@@ -25,40 +25,191 @@
 
 </style>
 <body>
-	<div id="ajmebcShiftingTilesApp" class="app" style="height: 150px; width: 600px; display: block;"></div>
-
+  <div id="testwrapper" style="display: block; width: 100%; height: 300px;">
+  	<div id="ajmebcShiftingTilesApp" class="app" style="display: block; margin-left: auto; margin-right: auto;"></div>
+  </div>
   <script type="text/javascript">
+/*
+
+h 320
+w 568
+Object {width: 1836, height: 3264}
+
+*/
+
+
+/**
+ * Portrait
+ */
+/*
+var ajmebc_shifting_tile_data = {"pictures": [
+  { "src": "content/images/portrait/20150527_214758.jpeg", "id": "1", "description": "image description 1"},
+  { "src": "content/images/portrait/20150601_221757.jpeg", "id": "2", "description": "image description 2"},
+  { "src": "content/images/portrait/IMG_3811_edited-1.jpg", "id": "3", "description": "image description 3"},
+  { "src": "content/images/portrait/20150527_214813.jpeg", "id": "4", "description": "image description 4"},
+  { "src": "content/images/portrait/20150601_221958.jpeg", "id": "5", "description": "image description 5"},
+  { "src": "content/images/portrait/IMG_3839_edited-1.jpg", "id": "6", "description": "image description 6"},
+  { "src": "content/images/portrait/IMG_3808.jpg", "id": "7", "description": ""},
+  { "src": "content/images/20140528_182558.jpg", "id": "1111", "description": ""},
+  { "src": "content/images/8311987635_6f157d5ea1_o.jpg", "id": "112", "description": "" },
+  { "src": "content/images/8590992191_2e96b12bbc_o.jpg", "id": "114", "description": "this is image 4" },
+  { "src": "content/images/8591017723_6f72083658_o.jpg", "id": "115", "description": "this is image 5" },
+  { "src": "content/images/8591031889_e72b08afa5_o.jpg", "id": "116", "description": "this is image 6" },
+  { "src": "content/images/8876100671_442ac3b93e_o.jpg", "id": "117", "description": "this is image 7" },
+  { "src": "content/images/IMG_1323_edited-2.jpg", "id": "11", "description": "this is image 11" },
+  { "src": "content/images/IMG_1325_edited-2.jpg", "id": "12", "description": "this is image 12" },
+  { "src": "content/images/IMG_3464_edited-1.jpg", "id": "13", "description": "this is image 13" },
+  { "src": "content/images/IMG_3512_edited-1.jpg", "id": "14", "description": "this is image 14" },
+  { "src": "content/images/IMG_3543.jpg", "id": "15", "description": "this is image 15" }
+]}
+*/
+
+var ajmebc_shifting_tile_data = {"pictures": [
+  { "src": "content/images/8311987635_6f157d5ea1_o.jpg", "id": "112", "description": "" },
+  { "src": "content/images/8590992191_2e96b12bbc_o.jpg", "id": "114", "description": "this is image 4" },
+  { "src": "content/images/8591017723_6f72083658_o.jpg", "id": "115", "description": "this is image 5" },
+  { "src": "content/images/8591031889_e72b08afa5_o.jpg", "id": "116", "description": "this is image 6" },
+  { "src": "content/images/8876100671_442ac3b93e_o.jpg", "id": "117", "description": "this is image 7" },
+  { "src": "content/images/IMG_1323_edited-2.jpg", "id": "11", "description": "this is image 11" },
+  { "src": "content/images/IMG_1325_edited-2.jpg", "id": "12", "description": "this is image 12" },
+  { "src": "content/images/IMG_3464_edited-1.jpg", "id": "13", "description": "this is image 13" },
+  { "src": "content/images/IMG_3512_edited-1.jpg", "id": "14", "description": "this is image 14" },
+  { "src": "content/images/IMG_3543.jpg", "id": "15", "description": "this is image 15" }
+]}
+
+/**
+ * Landscape
+ */
+/*
+  var ajmebc_shifting_tile_data = {"pictures": [
+    { "src": "content/images/20140528_182558.jpg", "id": "1", "description": ""},
+    { "src": "content/images/8311987635_6f157d5ea1_o.jpg", "id": "2", "description": "" },
+    { "src": "content/images/8590992191_2e96b12bbc_o.jpg", "id": "4", "description": "this is image 4" },
+    { "src": "content/images/8591017723_6f72083658_o.jpg", "id": "5", "description": "this is image 5" },
+    { "src": "content/images/8591031889_e72b08afa5_o.jpg", "id": "6", "description": "this is image 6" },
+    { "src": "content/images/8876100671_442ac3b93e_o.jpg", "id": "7", "description": "this is image 7" },
+    { "src": "content/images/IMG_1323_edited-2.jpg", "id": "11", "description": "this is image 11" },
+    { "src": "content/images/IMG_1325_edited-2.jpg", "id": "12", "description": "this is image 12" },
+    { "src": "content/images/IMG_3464_edited-1.jpg", "id": "13", "description": "this is image 13" },
+    { "src": "content/images/IMG_3512_edited-1.jpg", "id": "14", "description": "this is image 14" },
+    { "src": "content/images/IMG_3543.jpg", "id": "15", "description": "this is image 15" }
+  ]}
+*/
   var ajmebc = ajmebc || {};
-    ajmebc.ShiftingTiles = {
-      //url: './content/json/pictures.json',
-      data: {"pictures": [
-        { "src": "content/images/20140528_182558.jpg", "id": "1"},
-        { "src": "content/images/8311987635_6f157d5ea1_o.jpg", "id": "2" },
-        { "src": "content/images/8311987635_6f157d5ea1_oxxx.jpg", "id": "3" },
-        { "src": "content/images/8590992191_2e96b12bbc_o.jpg", "id": "4" },
-        { "src": "content/images/8591017723_6f72083658_o.jpg", "id": "5" },
-        { "src": "content/images/8591031889_e72b08afa5_o.jpg", "id": "6" },
-        { "src": "content/images/8876100671_442ac3b93e_o.jpg", "id": "7" },
-        { "src": "content/images/8591017723_6f72083658_oxxx.jpg", "id": "8" },
-        { "src": "content/images/8591031889_e72b08afa5_oxxx.jpg", "id": "9" },
-        { "src": "content/images/8876100671_442ac3b93e_oxxx.jpg", "id": "10" },
-        { "src": "content/images/IMG_1323_edited-2.jpg", "id": "11" },
-        { "src": "content/images/IMG_1325_edited-2.jpg", "id": "12" },
-        { "src": "content/images/IMG_3464_edited-1.jpg", "id": "13" },
-        { "src": "content/images/IMG_3512_edited-1.jpg", "id": "14" },
-        { "src": "content/images/IMG_3543.jpg", "id": "15" }
-      ]},
-      style: {
-        'margin': '2px',
-        //'border': '3px solid black',
-        //'padding': '2px'
+
+
+
+  ajmebc.ShiftingTiles = {
+    //url: './content/json/pictures.json',
+    data: ajmebc_shifting_tile_data,
+    style: {
+      mobile_portrait: {
+        query: '(max-width: 767px) and (orientation: portrait)',
+        height: '400',
+        width: '150',
+        rows: 3,
+        columns: 1,
+        frameStyle: {
+          'margin': '3px',
+        },
+        fullscreen: {
+          margin: {
+            'margin-vertical': '30',
+            'margin-horizontal': '30'
+          }
+        }
       },
-      rows: 2,
-      columns: 3,
-      //loading: 'sequence',
-      loading: 'random',
-      animation: 'Basic'
-    };
+      mobile_landscape: {
+        query: '(max-width: 767px) and (orientation: landscape)',
+        height: '150',
+        width: '400',
+        rows: 1,
+        columns: 4,
+        frameStyle: {
+          'margin': '3px',
+        },
+        fullscreen: {
+          margin: {
+            'margin-vertical': '20',
+            'margin-horizontal': '10'
+          }
+        }
+      },
+      tablet_portrait: {
+        query: '(min-width: 768px) and (max-width: 1024px) and (orientation: portrait)',
+        height: '800',
+        width: '400',
+        rows: 3,
+        columns: 2,
+        frameStyle: {
+          'margin': '3px',
+        },
+        fullscreen: {
+          margin: {
+            'margin-vertical': '10',
+            'margin-horizontal': '10'
+          }
+        }
+      },
+      tablet_landscape: {
+        query: '(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)',
+        height: '300',
+        width: '800',
+        rows: 1,
+        columns: 4,
+        frameStyle: {
+          'margin': '3px',
+        },
+        fullscreen: {
+          margin: {
+            'margin-vertical': '10',
+            'margin-horizontal': '10'
+          }
+        }
+      },
+      /*desktop: {
+        query: '(min-width: 1025px)',
+        height: '300',
+        width: '600',
+        rows: 2,
+        columns: 3,
+        frameStyle: {
+          'margin': '3',
+        },
+        fullscreen: {
+          margin: {
+            'margin-vertical': '10',
+            'margin-horizontal': '10',
+          }
+        }
+      }*/
+      desktop: {
+        query: '(min-width: 1025px)',
+        height: '200',
+        width: '600',
+        rows: 1,
+        columns: 3,
+        frameStyle: {
+          'margin': '3',
+        },
+        fullscreen: {
+          margin: {
+            'margin-vertical': '10',
+            'margin-horizontal': '10',
+          }
+        }
+      }
+    },
+    loading: 'sequence',
+    //loading: 'random',
+    timer: 3000,
+    animation: {
+      name: 'Slide',
+      timer: 1000
+    }
+  };
+
+
   </script>
   <script type="text/javascript" data-main="js/main.js" src="../node_modules/requirejs/require.js"></script>
   <!--<script type="text/javascript" src="../dist/js/ShiftingTiles.min.js"></script>-->

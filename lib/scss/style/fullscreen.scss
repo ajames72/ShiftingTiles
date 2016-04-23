@@ -1,0 +1,109 @@
+
+#ajmebc-st-fullscreen {
+    .ajmebc-shifting-tile-fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      overflow: auto;
+      background-color: rgba($fullscreen-background-rgb, $fullscreen-background-rgb, $fullscreen-background-rgb, $fullscreen-opacity);
+      z-index: 1000;
+
+
+
+
+
+
+
+      .image-container {
+
+        /*
+        height: $fullscreen-image-container-height;
+        width: $fullscreen-image-container-width;
+        */
+
+        /* Wrap image-container in media queries */
+        /*
+        @media all and (max-width: $tablet-width) {
+          height: $fullscreen-image-container-height-mobile;
+          width: $fullscreen-image-container-width-mobile;
+        }
+
+        @media all and (max-width: $tablet-width) and (orientation: landscape) {
+          height: $fullscreen-image-container-height-mobile-landscape;
+          width: $fullscreen-image-container-width-mobile-landscape;
+        }
+
+        @media all and (min-width: $tablet-width + 1) and (max-width: $laptop-width) {
+          height: $fullscreen-image-container-height-tablet;
+          width: $fullscreen-image-container-width-tablet;
+        }
+
+        @media all and (min-width: $tablet-width + 1) and (max-width: $laptop-width) and (orientation: landscape) {
+          height: $fullscreen-image-container-height-tablet-landscape;
+          width: $fullscreen-image-container-width-tablet-landscape;
+        }
+
+        @media all and (min-width: $tablet-width + 1) and (max-width: $laptop-width) {
+
+        }
+
+        @media all and (min-width: $laptop-width + 1) and (max-width: $laptop-width-lg) {
+
+        }
+
+        @media all and (min-width: $laptop-width-lg + 1) {
+
+        }
+        */
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        #ajmebc-shifting-tile-fullscreen-close {
+          position: absolute;
+          top: $fullscreen-close-button-icon-co-ords;
+          right: $fullscreen-close-button-icon-co-ords;
+          border: none;
+          background: url("../images/1456311499_icon-close-circled_2.png") no-repeat 0 0 transparent;
+          width: $fullscreen-close-button-icon-min-dimension;
+          height: $fullscreen-close-button-icon-min-dimension;
+          cursor: pointer;
+          padding: 0;
+
+          img {
+            height: 25px;
+            width: 25px;
+            margin-right: 5px;
+          }
+        }
+
+      }
+
+      .ajmebc-shifting-tile-description-wrapper {
+        width: 100%;
+
+        .ajmebc-shifting-tile-description {
+          font-family: $fullscreen-description-font-family;
+          font-size: $fullscreen-description-font-size;
+          color: $fullscreen-description-font-colour;
+          width: $fullscreen-description-width;
+          margin-left: $fullscreen-description-margin-sides;
+          margin-right: $fullscreen-description-margin-sides;
+          margin-top: $fullscreen-description-margin-top;
+          margin-bottom: $fullscreen-description-margin-bottom;
+          text-align: center;
+          border-width: 1px;
+          border-radius: $fullscreen-description-border-radius;
+          border-style: solid;
+          border-color: $fullscreen-description-background-colour;
+          background-color: $fullscreen-description-background-colour;
+          padding: $fullscreen-description-padding-top-bottom $fullscreen-description-border-radius;
+        }
+      }
+    }
+}

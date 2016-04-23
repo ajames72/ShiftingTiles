@@ -4,7 +4,7 @@
 /**
  * Animations
  **/
-
+/*
 @keyframes slidein{
   from {
     margin-left: 100%;
@@ -58,4 +58,27 @@
     animation-duration: 3s,
     animation-name: slideout
   ), webkit moz);
+}
+*/
+
+.slide {
+  transform: translate(194px, 0);
+  transition: transform 2s;
+}
+
+.slide-action {
+  transform: translate(0, 0);
+}
+
+.slide-left {
+  transform: translate(-194px, 0);
+  transition: transform 2s;
+}
+
+.slide-left-on {
+
+}
+
+.slide-left-off {
+
 }

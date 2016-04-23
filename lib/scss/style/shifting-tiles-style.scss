@@ -32,9 +32,6 @@
   .ajmebc-shifting-tile-loading-spinner {
     display: block;
     height: $spinkit-spinner-container-height;
-    margin-top: $spinkit-spinner-container-margin;
-    margin-left: auto;
-    margin-right: auto;
     width: 100%;
   }
 
@@ -86,34 +83,76 @@ div.ajmebc-shifting-tile {
     display: inline-block;
     overflow: hidden;
     /*
-     * Width is taken from config
+     * Cell width is taken from config
      */
     height: 100%;
-    float: left;
+
     .ajmebc-shifting-tile-img {
       box-sizing: border-box;
       display: inline-block;
+      overflow: hidden;
       position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0px;
-      left: 0px;
+      /*height: 100%;
+      max-width: none;*/
+      /*top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;*/
+      //left: auto;
     }
   }
 }
 
-#ajmebc-st-fullscreen {
-    .ajmebc-shifting-tile-fullscreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, $fullscreen-opacity);
 
-      img {
-        height:75%;
-      }
-    }
+/*
+for media queries
+*/
+/*
+.absolute-center-2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12%;
+  margin-bottom: 12%;
+  position: relative;
+  // top: 0;
+  left: 0;
+  //bottom: 0;
+  right: 0;
 }
+.image-container {
+  //height:75%;
+  width: 50%;
+
+  img {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #ajmebc-shifting-tile-fullscreen-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border: none;
+    background-color: transparent;
+    width: 7%;
+    height:7%;
+    min-height: 25px;
+    min-width: 25px;
+  }
+
+}
+.ajmebc-shifting-tile-description {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9em;
+  color: #fff;
+  //width: 90%;
+  margin-left: 10%;
+  margin-right: 10%;
+  //margin-bottom: 1%;
+  text-align: center;
+  //position: absolute;
+  //bottom: 0;
+  position: relative;
+}
+*/

@@ -7,17 +7,33 @@ define(function (require) {
   //var pictureContainerDataView = new PictureTileContainerDataView();
   //var pictureTileView = new PictureTileView();
 
-  describe("the PictureTileContainerView", function(){
+  describe("the PictureTileContainerDataView", function(){
 
     beforeEach(function(){
 
     });
+    describe("TodoListView", function() {
 
+      beforeEach(function() {
+        this.view = new PictureTileContainerDataView();
+      });
+
+      describe("Instantiation", function() {
+//$("#ajmebcShiftingTilesApp"),
+        it("should create a list element", function() {
+          //expect(this.view.el).toHaveId("ajmebcShiftingTilesApp");
+        });
+
+      });
+
+    });
+    /*
     describe("Instantiation", function() {
       it("should contain a collection", function(){
         //expect(pictureContainerDataView.collection instanceof PictureTileCollection).toBe(true);
       });
     });
+    */
   });
 
   describe("the PictureTileView", function(){
@@ -28,7 +44,7 @@ define(function (require) {
 
     describe("Instantiation", function() {
       it("should set the correct animation", function(){
-        
+
       });
     });
   });

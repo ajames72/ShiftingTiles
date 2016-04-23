@@ -1,10 +1,10 @@
 {
   "name": "ShiftingTiles",
   "description": "The best project ever.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/jamesa26/ShiftingTiles",
   "author": {
-    "name": "ajames72",
+    "name": "AJ & MEBC Ltd",
     "email": "andrew.james@ajmebc.co.uk"
   },
   "repository": {
@@ -16,8 +16,8 @@
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/jamesa26/ShiftingTiles/blob/master/LICENSE-MIT"
+      "type": "under the Apache License, Version 2.0 (the \"License\");",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
     }
   ],
   "main": "lib/ShiftingTiles",
@@ -53,6 +53,7 @@
     "jquery-ui": "^1.10.5",
     "node-sass": "^3.4.2",
     "requirejs": "~2.1.15",
+    "simplestatemanager": "^3.1.1",
     "sinon": "^1.17.2",
     "spinkit": "^1.2.2"
   },

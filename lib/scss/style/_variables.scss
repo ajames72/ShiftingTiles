@@ -12,4 +12,50 @@ $progress-bar-border-radius: 5px;
 $progress-bar-padding: 2px;
 
 $fullscreen-background-color: #000;
-$fullscreen-opacity: 0.7;
+$fullscreen-background-rgb: 30;
+$fullscreen-opacity: 0.9;
+
+$fullscreen-image-container-height: 75%;
+$fullscreen-image-container-width: 50%;
+
+$fullscreen-image-container-height-mobile: 75%;
+$fullscreen-image-container-width-mobile: 90%;
+
+$fullscreen-image-container-height-mobile-landscape: 75%;
+$fullscreen-image-container-width-mobile-landscape: 50%;
+
+$fullscreen-image-container-height-tablet: 85%;
+$fullscreen-image-container-width-tablet: 90%;
+
+$fullscreen-image-container-height-tablet-landscape: 75%;
+$fullscreen-image-container-width-tablet-landscape: 80%;
+
+$fullscreen-description-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$fullscreen-description-font-size: 0.7em;
+$fullscreen-description-font-colour: #fff;
+$fullscreen-description-width: 100%;
+$fullscreen-description-margin-sides: auto;
+$fullscreen-description-margin-top: 10px;
+$fullscreen-description-margin-bottom: 1%;
+
+$fullscreen-close-button-icon-co-ords: 0px;
+$fullscreen-close-button-icon-dimension: 5%;
+$fullscreen-close-button-icon-min-dimension: 25px;
+
+$fullscreen-description-background-colour: rgb(0, 0, 0);
+$fullscreen-description-border-radius: 1em;
+$fullscreen-description-padding-top-bottom: 0;
+
+//== Screen Sizes
+
+$mobile-width-sm: 320px;
+$mobile-width-md: 375px;
+$mobile-width-lg: 425px;
+
+$tablet-width: 768px;
+
+$laptop-width: 1024px;
+
+$laptop-width-lg: 1440px;
+
+$display-lg: 2560px;

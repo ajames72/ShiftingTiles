@@ -1,1 +1,15 @@
-<div><div class="ajmebc-shifting-tile-fullscreen"><img src="<%=data['src'] %>" class="absolute-center"></img></div></div>
+<div>
+  <div class="ajmebc-shifting-tile-fullscreen">
+    <div class="absolute-center image-container" style="height: <%= height %>px; width: <%= width %>px; ">
+      <img src="<%=data['src'] %>" />
+      <button type="button" id="ajmebc-shifting-tile-fullscreen-close">
+      </button>
+      <% if(data['description'].length > 0) { %>
+      <div class="ajmebc-shifting-tile-description-wrapper">
+        <div class="ajmebc-shifting-tile-description"><%=data['description'] %></div>
+      </div>
+      <% } %>
+    </div>
+
+  </div>
+</div>
