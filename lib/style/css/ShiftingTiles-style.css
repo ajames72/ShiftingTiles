@@ -75,12 +75,17 @@ div.ajmebc-shifting-tile {
       display: inline-block;
       overflow: hidden;
       position: absolute;
-      /*height: 100%;
-      max-width: none;*/
-      /*top: 0;
+      height: 100%;
+      width: 100%;
+      top: 0;
       right: 0;
       bottom: 0;
-      left: 0;*/ }
+      left: 0; }
+      div.ajmebc-shifting-tile .ajmebc-shifting-tile-col .ajmebc-shifting-tile-img img {
+        box-sizing: border-box;
+        display: inline-block;
+        overflow: hidden;
+        position: absolute; }
 
 /*
 for media queries
@@ -280,7 +285,7 @@ for media queries
 }
 */
 .slide {
-  transform: translate(194px, 0);
+  transform: translate(0px, 0);
   transition: transform 2s; }
 
 .slide-action {
