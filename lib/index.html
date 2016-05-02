@@ -22,12 +22,18 @@
   <!--<script type="text/javascript" src="../node_modules/requirejs/require.js"></script>-->
 </head>
 <style media="screen">
-
+img {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
 </style>
 <body>
-  <div id="testwrapper" style="display: block; width: 100%; height: 300px;">
-  	<div id="ajmebcShiftingTilesApp" class="app" style="display: block; margin-left: auto; margin-right: auto;"></div>
-  </div>
+    <div id="testwrapper" style="display: block; width: 100%;">
+    	<div id="ajmebcShiftingTilesApp" class="app" style="display: block; margin-left: auto; margin-right: auto; height: 60px; width: 60px;"></div>
+    </div>
   <script type="text/javascript">
 /*
 
@@ -41,7 +47,7 @@ Object {width: 1836, height: 3264}
 /**
  * Portrait
  */
-
+/*
 var ajmebc_shifting_tile_data = {"pictures": [
   { "src": "content/images/portrait/20150527_214758.jpeg", "id": "1", "description": "image description 1"},
   { "src": "content/images/portrait/20150601_221757.jpeg", "id": "2", "description": "image description 2"},
@@ -62,6 +68,25 @@ var ajmebc_shifting_tile_data = {"pictures": [
   { "src": "content/images/IMG_3512_edited-1.jpg", "id": "14", "description": "this is image 14" },
   { "src": "content/images/IMG_3543.jpg", "id": "15", "description": "this is image 15" }
 ]}
+*/
+
+var ajmebc_shifting_tile_data = {"pictures": [
+  { "src": "content/images/zodiac/IMG_2872.jpg", "id": "112", "description": "" },
+  { "src": "content/images/zodiac/IMG_2862.jpg", "id": "1", "description": "image description 1"},
+  { "src": "content/images/zodiac/IMG_2865.jpg", "id": "2", "description": "image description 2"},
+  { "src": "content/images/zodiac/IMG_2868.jpg", "id": "3", "description": "image description 3"},
+  { "src": "content/images/zodiac/IMG_2871.jpg", "id": "4", "description": "image description 4"},
+  { "src": "content/images/zodiac/IMG_2863.jpg", "id": "5", "description": "image description 5"},
+  { "src": "content/images/zodiac/IMG_2866.jpg", "id": "6", "description": "image description 6"},
+  { "src": "content/images/zodiac/IMG_3808.jpg", "id": "7", "description": ""},
+  { "src": "content/images/zodiac/IMG_2869.jpg", "id": "1111", "description": ""},
+  { "src": "content/images/zodiac/IMG_2864.jpg", "id": "114", "description": "this is image 4" },
+  { "src": "content/images/zodiac/IMG_2867.jpg", "id": "115", "description": "this is image 5" },
+  { "src": "content/images/zodiac/IMG_2870.jpg", "id": "116", "description": "this is image 6" },
+  { "src": "content/images/zodiac/IMG_2873.jpg", "id": "117", "description": "this is image 7" },
+]}
+
+
 
 /*
 var ajmebc_shifting_tile_data = {"pictures": [
@@ -167,14 +192,14 @@ var ajmebc_shifting_tile_data = {"pictures": [
           }
         }
       },
-      /*desktop: {
+      desktop: {
         query: '(min-width: 1025px)',
-        height: '300',
-        width: '600',
-        rows: 2,
-        columns: 3,
+        height: '120',
+        width: '120',
+        rows: 1,
+        columns: 1,
         frameStyle: {
-          'margin': '3',
+          'margin': '10px',
         },
         fullscreen: {
           margin: {
@@ -182,7 +207,8 @@ var ajmebc_shifting_tile_data = {"pictures": [
             'margin-horizontal': '10',
           }
         }
-      }*/
+      }
+      /*
       desktop: {
         query: '(min-width: 1025px)',
         height: '200',
@@ -199,13 +225,14 @@ var ajmebc_shifting_tile_data = {"pictures": [
           }
         }
       }
+      */
     },
     loading: 'sequence',
     //loading: 'random',
     timer: 3000,
     animation: {
-      name: 'Slide',
-      timer: 1000
+      name: 'SlideLeft',
+      timer: 2000
     }
   };
 

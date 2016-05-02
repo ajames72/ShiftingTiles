@@ -85,7 +85,9 @@ div.ajmebc-shifting-tile {
         box-sizing: border-box;
         display: inline-block;
         overflow: hidden;
-        position: absolute; }
+        position: absolute;
+        max-width: none;
+        max-height: none; }
 
 /*
 for media queries
@@ -224,76 +226,6 @@ for media queries
       border-color: black;
       background-color: black;
       padding: 0 1em; }
-
-/**
- * Animations
- **/
-/*
-@keyframes slidein{
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 0%;
-  }
-}
-
-@keyframes slideout{
-  from {
-    margin-left: 0%;
-  }
-
-  to {
-    margin-left: 100%;
-  }
-}
-
-@-webkit-keyframes slidein{
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 0%;
-  }
-}
-
-
-@-webkit-keyframes slideout{
-  from {
-    margin-left: 0%;
-  }
-
-  to {
-    margin-left: 100%;
-  }
-}
-
-.slidein{
-  @include prefix((
-    animation-duration: 3s,
-    animation-name: slidein
-  ), webkit moz);
-}
-
-.slideout{
-  @include prefix((
-    animation-duration: 3s,
-    animation-name: slideout
-  ), webkit moz);
-}
-*/
-.slide {
-  transform: translate(0px, 0);
-  transition: transform 2s; }
-
-.slide-action {
-  transform: translate(0, 0); }
-
-.slide-left {
-  transform: translate(-194px, 0);
-  transition: transform 2s; }
 
 /*
  *  Usage:
